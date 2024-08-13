@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-      runs-on: windows-latest  # Specifies the runner that the job will run on
+    runs-on: windows-latest  # Specifies the runner that the job will run on
 
     steps:
     - name: Checkout code

@@ -8,15 +8,15 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '7.0.x' # Aquí puedes ajustar la versión que necesites
+        dotnet-version: '7.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore SmtpServerWinForms-main/SmtpServerWinForms.sln
 
     - name: Build
-      run: dotnet build --configuration Release
+      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

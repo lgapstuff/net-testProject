@@ -4,11 +4,25 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest  # Specifies the runner that the job will run on
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1
-      - name: Build
-        run: dotnet build
-      - name: Run tests
-        run: dotnet test
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x' # Cambia a la versión que necesites
+    
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup NuGet CLI
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore dependencies with NuGet
+      run: nuget restore SmtpServerWinForms-main/SmtpServerWinForms.sln
+
+    - name: Build
+      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release 
+    
+    - name: Run tests
+      run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

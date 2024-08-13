@@ -9,11 +9,13 @@ jobs:
     steps:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '6.0.x' # Cambia a la versión que necesites
+
+    - name: setup-msbuild              
+      uses: microsoft/setup-msbuild@v2  
     
     - name: Checkout code
       uses: actions/checkout@v3
+      
 
     - name: Setup NuGet CLI
       uses: NuGet/setup-nuget@v1

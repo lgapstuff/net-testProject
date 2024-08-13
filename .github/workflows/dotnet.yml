@@ -13,8 +13,25 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore SmtpServerWinForms-main/SmtpServerWinForms.sln --verbosity detailed
 
+    - name: Verify DLL existence
+      run: |
+        if (Test-Path "SmtpServerWinForms-main/packages/BouncyCastle.Cryptography.2.4.0/lib/net461/BouncyCastle.Cryptography.dll") {
+          Write-Host "BouncyCastle.Cryptography.dll exists"
+        } else {
+          Write-Host "BouncyCastle.Cryptography.dll does not exist"
+          exit 1
+        }
+        if (Test-Path "SmtpServerWinForms-main/packages/MailKit.4.7.1.1/lib/net47/MailKit.dll") {
+          Write-Host "MailKit.dll exists"
+        } else {
+          Write-Host "MailKit.dll does not exist"
+          exit 1
+        }
+        # Añade más verificaciones para las otras dependencias si es necesario
+
+    # Aquí iría el paso de build si la verificación es exitosa
     - name: Build
-      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release
+      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release -p:Platform=x86
 
     - name: Run tests
       run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

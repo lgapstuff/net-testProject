@@ -1,0 +1,15 @@
+# Ignorar carpetas de Visual Studio
+.vs/
+.vscode/
+# Ignorar binarios y objetos
+bin/
+obj/
+# Ignorar archivos de configuración y temporales
+*.user
+*.lock
+*.suo
+*.log
+*.lck
+*.ldb
+# Ignorar paquetes de NuGet restaurados
+packages/

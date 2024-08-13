@@ -35,7 +35,7 @@ jobs:
         # Añade más verificaciones para las otras dependencias si es necesario
 
     - name: Build
-      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release -p:Platform=x86
+      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release 
 
     - name: Run tests
       run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

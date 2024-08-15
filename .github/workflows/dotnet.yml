@@ -21,10 +21,10 @@ jobs:
       uses: NuGet/setup-nuget@v1
 
     - name: Restore dependencies with NuGet
-      run: nuget restore SmtpServerWinForms-main/SmtpServerWinForms.sln
+      run: nuget restore ../SmtpServerWinForms-main/SmtpServerWinForms.sln
 
     - name: Build
-      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release 
+      run: dotnet build ../SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release 
     
     - name: Run tests
-      run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release
+      run: dotnet test ../SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

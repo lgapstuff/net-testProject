@@ -24,7 +24,8 @@ jobs:
       run: nuget restore SmtpServerWinForms-main/SmtpServerWinForms.sln
 
     - name: Build
-      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release 
+      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release --platform x86
+    
     
     - name: Run tests
       run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release

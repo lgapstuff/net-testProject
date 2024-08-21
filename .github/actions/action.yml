@@ -1,0 +1,20 @@
+name: unit-test-net-action
+
+inputs:
+  path:
+    required: true
+    type: string
+  project_name:
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run Unit Test
+      working-directory: ${{ inputs.path }}
+      run: |
+        dotnet restore Axity.${{ inputs.project_name }}.sln
+        dotnet build Axity.${{ inputs.project_name }}.sln
+        dotnet test Axity.${{ inputs.project_name }}.Test/Axity.${{ inputs.project_name }}.Test.csproj --no-restore --verbosity normal
+      shell: cmd

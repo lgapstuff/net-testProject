@@ -1,31 +1,33 @@
-name: .NET Framework Build
-
-on: [push]
+name: workflow-net
+on: 
+  workflow_dispatch:
+  push:
+      branches:
+        - develop
+      paths:
+        - 'SmtpServerWinForms-main/**'
 
 jobs:
-  build:
-    runs-on: windows-latest  # Specifies the runner that the job will run on
-
+  test:
+    name: run tests
+    runs-on: ubuntu-latest
+    
     steps:
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: setup-msbuild              
-      uses: microsoft/setup-msbuild@v2  
-    
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
+#Se debe configurar todos los frameworks para poder hacer las compilaciones
+      - name: Configurar el entorno
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1'
 
-    - name: Setup NuGet CLI
-      uses: NuGet/setup-nuget@v1
-
-    - name: Restore dependencies with NuGet
-      run: nuget restore SmtpServerWinForms-main/SmtpServerWinForms.sln
-
-    - name: Build
-      run: dotnet build SmtpServerWinForms-main/SmtpServerWinForms.sln  /p:platform="Any CPU" /p:configuration="Release"
-    
-    
-    - name: Run tests
-      run: dotnet test SmtpServerWinForms-main/SmtpServerWinForms.sln --configuration Release
+# #Se debe poner un elemento por cada componente, se puede poner el if para hacer la compilacion solo si el elemento tuvo cambios
+#       - name: Test catalogs-service
+#         # if: ${{ (contains(steps.changeset.outputs.changes, 'catalogs-service')) || (inputs.force_test) }}
+#         uses: ./.github/actions/unit-test-net
+#         with:
+#           path: BackEnd\Net\catalogs-service
+#           project_name: Catalogs

@@ -17,4 +17,4 @@ runs:
         dotnet restore Axity.${{ inputs.project_name }}.sln
         dotnet build Axity.${{ inputs.project_name }}.sln
         dotnet test Axity.${{ inputs.project_name }}.Test/Axity.${{ inputs.project_name }}.Test.csproj --no-restore --verbosity normal
-      shell: cmd
+      shell: bash  # Change this to bash

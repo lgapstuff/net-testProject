@@ -14,7 +14,7 @@ runs:
     - name: Run Unit Test
       working-directory: ${{ inputs.path }}
       run: |
-        dotnet restore Axity.${{ inputs.project_name }}.sln
-        dotnet build Axity.${{ inputs.project_name }}.sln
-        dotnet test Axity.${{ inputs.project_name }}.Test/Axity.${{ inputs.project_name }}.Test.csproj --no-restore --verbosity normal
-      shell: bash  # Change this to bash
+        dotnet restore ${{ inputs.project_name }}.sln
+        dotnet build ${{ inputs.project_name }}.sln
+        dotnet test ${{ inputs.project_name }}.Test/${{ inputs.project_name }}.Test.csproj --no-restore --verbosity normal
+      shell: bash

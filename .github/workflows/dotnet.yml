@@ -31,4 +31,4 @@ jobs:
         uses: ./.github/actions/unit-test-net
         with:
           path: SmtpServerWinForms-main
-          project_name: SmtpServerWinForms.sln
+          project_name: SmtpServerWinForms

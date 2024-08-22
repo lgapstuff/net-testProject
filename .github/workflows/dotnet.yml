@@ -26,9 +26,9 @@ jobs:
 
           
 #Se debe poner un elemento por cada componente, se puede poner el if para hacer la compilacion solo si el elemento tuvo cambios
-      - name: Test catalogs-service
-        # if: ${{ (contains(steps.changeset.outputs.changes, 'catalogs-service')) || (inputs.force_test) }}
+      - name: Test SmtpServerWinForms
+        # if: ${{ (contains(steps.changeset.outputs.changes, 'SmtpServerWinForms')) || (inputs.force_test) }}
         uses: ./.github/actions/unit-test-net
         with:
-          path: SmtpServerWinForms-main\catalogs-service
-          project_name: Catalogs
+          path: SmtpServerWinForms-main
+          project_name: SmtpServerWinForms.sln
